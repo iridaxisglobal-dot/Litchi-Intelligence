@@ -1,0 +1,2 @@
+total_images_scored,total_detected_fruits,avg_detected_fruits_per_image,avg_image_confidence,avg_flowering_score,avg_visible_stress_score,avg_canopy_gap_pct,avg_green_canopy_pct_proxy,avg_thermal_proxy_score,avg_blur_score,avg_brightness_mean,avg_contrast_std
+1308,19953,15.254587155963304,0.7756087264818878,4.935015290519877,4.25611620795107,20.389626039277523,43.00716911105935,2.146788990825688,794.1722247068636,112.67220524685828,69.68708535389057

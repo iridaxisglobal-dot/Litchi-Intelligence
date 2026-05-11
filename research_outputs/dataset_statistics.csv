@@ -1,0 +1,10 @@
+metric,value
+total_images,1308.0
+total_label_files,1308.0
+total_objects,15759.0
+images_without_labels,1.0
+avg_objects_per_image,12.04816513761468
+class_0_Green_object_count,4210.0
+class_1_Half_object_count,1029.0
+class_2_Red_object_count,6989.0
+class_3_Young_object_count,3531.0

@@ -1,0 +1,28 @@
+stage,file_or_object,observation_level,row_count,column_count
+Original Dataset,Original images,Image,1308,
+Original Dataset,Original YOLO label files,Label file,1308,
+Original Dataset,Original labelled objects,Fruit object / bounding box,15759,
+After Train/Validation Split,Training images,Image,1045,
+After Train/Validation Split,Validation images,Image,262,
+After Train/Validation Split,Training label files,Label file,1045,
+After Train/Validation Split,Validation label files,Label file,262,
+Generated Output,disease_adjusted_image_level_future_marketable_production_estimation.csv,CSV rows,3924,82.0
+Generated Output,disease_pattern_summary_by_maturity_stage.csv,CSV rows,4,15.0
+Generated Output,tree_level_disease_adjusted_production_summary.csv,CSV rows,3924,42.0
+Generated Output,image_level_research_summary_statistics.csv,CSV rows,1,12.0
+Generated Output,dataset_label_audit.csv,CSV rows,15760,57.0
+Generated Output,fruit_level_composite_disease_index.csv,CSV rows,19953,19.0
+Generated Output,manual_iou50_detection_validation_rows.csv,CSV rows,4523,6.0
+Generated Output,fruit_level_predictions_and_features.csv,CSV rows,19953,71.0
+Generated Output,per_class_validation_metrics.csv,CSV rows,4,3.0
+Generated Output,manual_iou50_validation_summary_by_class.csv,CSV rows,4,8.0
+Generated Output,epoch_training_validation_metrics.csv,CSV rows,50,22.0
+Generated Output,image_level_composite_disease_index.csv,CSV rows,1308,19.0
+Generated Output,validation_metrics_summary.csv,CSV rows,1,6.0
+Generated Output,prediction_statistics_by_maturity_class.csv,CSV rows,4,10.0
+Generated Output,class_distribution.csv,CSV rows,4,3.0
+Generated Output,disease_loss_production_summary_before_after.csv,CSV rows,3,17.0
+Generated Output,fruit_level_disease_pattern_estimation.csv,CSV rows,19953,19.0
+Generated Output,dataset_statistics.csv,CSV rows,9,2.0
+Generated Output,tree_level_prediction_summary.csv,CSV rows,1308,44.0
+Generated Output,image_level_predictions_and_agro_features.csv,CSV rows,1308,65.0
