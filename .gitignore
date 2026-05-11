@@ -1,0 +1,7 @@
+venv/
+research_outputs/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+*.pyc
+.env
