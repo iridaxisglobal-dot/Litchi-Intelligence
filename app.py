@@ -518,12 +518,7 @@ observation_counts = data.get("observation_counts", pd.DataFrame())
 # ----------------------------------------------------------
 # Header
 # ----------------------------------------------------------
-# st.markdown('<div class="main-title">🍒 LIOS—Story & Statistical Dashboard</div>', unsafe_allow_html=True)
-# st.markdown(
-#     '<div class="sub-title">From image detection to maturity mix, disease risk, production outlook, model performance and research-grade statistics.</div>',
-#     unsafe_allow_html=True
-# )
-# -------------------New-----------------
+
 st.markdown(
     """
     <style>
@@ -592,6 +587,7 @@ st.markdown(
             (image detection to maturity mix, disease risk, production outlook,
             model performance and research-grade statistics)
         </div>
+
         <hr style="
             margin-top:20px;
             margin-bottom:10px;
@@ -599,13 +595,15 @@ st.markdown(
             height:1px;
             background:#dddddd;
         ">
+
     </div>
+
     """,
     unsafe_allow_html=True
 )
 # -------------------End-----------------
-with st.expander("Data availability check", expanded=False):
-    st.dataframe(show_missing_outputs(data), use_container_width=True)
+# with st.expander("Data availability check", expanded=False):
+#     st.dataframe(show_missing_outputs(data), use_container_width=True)
 
 
 # ----------------------------------------------------------
