@@ -384,12 +384,19 @@ def apply_common_filters(data):
     maturity_values = []
     if has_cols(fruit, ["predicted_maturity_class"]):
         maturity_values = sorted(fruit["predicted_maturity_class"].dropna().unique().tolist())
+    # selected_maturity = st.sidebar.multiselect(
+    #     "Maturity class",
+    #     options=maturity_values,
+    #     default=maturity_values
+    # ) if maturity_values else []
+
     selected_maturity = st.sidebar.multiselect(
         "Maturity class",
         options=maturity_values,
-        default=maturity_values
+        default=[],
+        placeholder="Select maturity classes"
     ) if maturity_values else []
-
+    
     orchard_values = []
     for df in [production, image, tree_prod]:
         if has_cols(df, ["orchard_id"]):
