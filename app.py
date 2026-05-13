@@ -489,18 +489,24 @@ st.markdown(
         font-weight: 800;
         color: #b22222;
         text-align: center;
+        margin-bottom: 0px;
     }
 
     .subtitle {
         font-size: 24px;
         font-weight: 700;
         text-align: center;
+        margin-top: 0px;
+        margin-bottom: 2px;
     }
 
     .tagline {
         font-size: 16px;
         color: #666666;
         text-align: center;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        line-height: 1.3;
     }
     </style>
     """,
