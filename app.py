@@ -525,33 +525,6 @@ st.markdown(
 st.divider()
 
 # ----------------------------------------------------------
-# Header HTML
-# ----------------------------------------------------------
-
-header_html = """
-<div class="dashboard-header">
-
-    <div class="dashboard-title">
-        🍒 LITCHI ORCHARD INTELLIGENCE SYSTEM (LOIS)
-    </div>
-
-    <div class="dashboard-subtitle">
-        Story & Statistical Dashboard
-    </div>
-
-    <div class="dashboard-tagline">
-        AI Powered Orchard Intelligence, Disease Analytics & Production Forecasting Platform
-        (image detection to maturity mix, disease risk, production outlook,
-        model performance and research-grade statistics)
-    </div>
-
-    <hr class="dashboard-divider">
-
-</div>
-"""
-
-st.markdown(header_html, unsafe_allow_html=True)
-# ----------------------------------------------------------
 # Tabs
 # ----------------------------------------------------------
 tabs = st.tabs([
