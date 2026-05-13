@@ -283,14 +283,15 @@ def plot_hist(df, col, title=""):
         height=420,
         margin=dict(l=10, r=10, t=10, b=10)
     )
+   
     st.plotly_chart(
         fig,
         use_container_width=True,
+        key=f"hist_{col}_{title}",
         config={
             "displaylogo": False
         }
     )
-
 # ==========================================================
 # MODIFIED plot_scatter()
 # ==========================================================
