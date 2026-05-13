@@ -38,40 +38,40 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown(
-    """
-    <style>
-    .main-title {
-        font-size: 34px;
-        font-weight: 800;
-        margin-bottom: 4px;
-    }
-    .sub-title {
-        font-size: 16px;
-        color: #666;
-        margin-bottom: 20px;
-    }
-    .section-title {
-        font-size: 23px;
-        font-weight: 750;
-        margin-top: 25px;
-        margin-bottom: 10px;
-    }
-    .small-muted {
-        color: #777;
-        font-size: 13px;
-    }
-    .story-box {
-        background-color: #f7f9fb;
-        border-left: 5px solid #d34a4a;
-        padding: 14px 16px;
-        border-radius: 10px;
-        margin-bottom: 14px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     """
+#     <style>
+#     .main-title {
+#         font-size: 34px;
+#         font-weight: 800;
+#         margin-bottom: 4px;
+#     }
+#     .sub-title {
+#         font-size: 16px;
+#         color: #666;
+#         margin-bottom: 20px;
+#     }
+#     .section-title {
+#         font-size: 23px;
+#         font-weight: 750;
+#         margin-top: 25px;
+#         margin-bottom: 10px;
+#     }
+#     .small-muted {
+#         color: #777;
+#         font-size: 13px;
+#     }
+#     .story-box {
+#         background-color: #f7f9fb;
+#         border-left: 5px solid #d34a4a;
+#         padding: 14px 16px;
+#         border-radius: 10px;
+#         margin-bottom: 14px;
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 
 
@@ -516,94 +516,96 @@ observation_counts = data.get("observation_counts", pd.DataFrame())
 
 
 # ----------------------------------------------------------
-# Header
+# Header CSS
 # ----------------------------------------------------------
 
-st.markdown(
-    """
-    <style>
+st.markdown("""
+<style>
 
-    .dashboard-header {
-        text-align: center;
-        margin-top: -20px;
-        margin-bottom: 20px;
-    }
+.dashboard-header {
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: #b22222;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.dashboard-tagline {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    max-width: 1100px;
+    margin: auto;
+    line-height: 1.5;
+}
+
+.dashboard-divider {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 0;
+    height: 1px;
+    background: #dddddd;
+}
+
+@media (max-width: 768px) {
 
     .dashboard-title {
-        font-size: 38px;
-        font-weight: 800;
-        color: #b22222;
-        line-height: 1.2;
-        margin-bottom: 8px;
+        font-size: 22px !important;
     }
 
     .dashboard-subtitle {
-        font-size: 24px;
-        font-weight: 700;
-        color: #333333;
-        margin-bottom: 10px;
+        font-size: 17px !important;
     }
 
     .dashboard-tagline {
-        font-size: 16px;
-        font-weight: 400;
-        color: #666666;
-        max-width: 1100px;
-        margin: auto;
-        line-height: 1.5;
+        font-size: 13px !important;
+        padding-left: 10px;
+        padding-right: 10px;
     }
+}
 
-    @media (max-width: 768px) {
+</style>
+""", unsafe_allow_html=True)
 
-        .dashboard-title {
-            font-size: 22px !important;
-        }
 
-        .dashboard-subtitle {
-            font-size: 17px !important;
-        }
+# ----------------------------------------------------------
+# Header HTML
+# ----------------------------------------------------------
 
-        .dashboard-tagline {
-            font-size: 13px !important;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
+st.markdown("""
+<div class="dashboard-header">
 
-    </style>
-
-    <div class="dashboard-header">
-
-        <div class="dashboard-title">
-            🍒 LITCHI ORCHARD INTELLIGENCE SYSTEM (LOIS)
-        </div>
-
-        <div class="dashboard-subtitle">
-            Story & Statistical Dashboard
-        </div>
-
-        <div class="dashboard-tagline">
-            AI Powered Orchard Intelligence, Disease Analytics & Production Forecasting Platform
-            (image detection to maturity mix, disease risk, production outlook,
-            model performance and research-grade statistics)
-        </div>
-
-        <hr style="
-            margin-top:20px;
-            margin-bottom:10px;
-            border:0;
-            height:1px;
-            background:#dddddd;
-        ">
-
+    <div class="dashboard-title">
+        🍒 LITCHI ORCHARD INTELLIGENCE SYSTEM (LOIS)
     </div>
 
-    """,
-    unsafe_allow_html=True
-)
-# -------------------End-----------------
-# with st.expander("Data availability check", expanded=False):
-#     st.dataframe(show_missing_outputs(data), use_container_width=True)
+    <div class="dashboard-subtitle">
+        Story & Statistical Dashboard
+    </div>
+
+    <div class="dashboard-tagline">
+        AI Powered Orchard Intelligence, Disease Analytics & Production Forecasting Platform
+        (image detection to maturity mix, disease risk, production outlook,
+        model performance and research-grade statistics)
+    </div>
+
+    <hr class="dashboard-divider">
+
+</div>
+""", unsafe_allow_html=True)
 
 
 # ----------------------------------------------------------
