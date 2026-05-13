@@ -38,43 +38,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# st.markdown(
-#     """
-#     <style>
-#     .main-title {
-#         font-size: 34px;
-#         font-weight: 800;
-#         margin-bottom: 4px;
-#     }
-#     .sub-title {
-#         font-size: 16px;
-#         color: #666;
-#         margin-bottom: 20px;
-#     }
-#     .section-title {
-#         font-size: 23px;
-#         font-weight: 750;
-#         margin-top: 25px;
-#         margin-bottom: 10px;
-#     }
-#     .small-muted {
-#         color: #777;
-#         font-size: 13px;
-#     }
-#     .story-box {
-#         background-color: #f7f9fb;
-#         border-left: 5px solid #d34a4a;
-#         padding: 14px 16px;
-#         border-radius: 10px;
-#         margin-bottom: 14px;
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-
-
 # ----------------------------------------------------------
 # Helpers
 # ----------------------------------------------------------
