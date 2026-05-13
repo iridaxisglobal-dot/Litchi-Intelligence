@@ -369,12 +369,18 @@ def apply_common_filters(data):
     scenario_values = []
     if has_cols(production, ["scenario"]):
         scenario_values = sorted(production["scenario"].dropna().unique().tolist())
+    # selected_scenarios = st.sidebar.multiselect(
+    #     "Production scenario",
+    #     options=scenario_values,
+    #     default=scenario_values
+    # ) if scenario_values else []
+    all_scenarios = st.sidebar.checkbox("Select all scenarios", value=True)
     selected_scenarios = st.sidebar.multiselect(
         "Production scenario",
         options=scenario_values,
-        default=scenario_values
-    ) if scenario_values else []
-
+        default=scenario_values if all_scenarios else []
+    )
+    
     maturity_values = []
     if has_cols(fruit, ["predicted_maturity_class"]):
         maturity_values = sorted(fruit["predicted_maturity_class"].dropna().unique().tolist())
