@@ -231,6 +231,7 @@ def plot_bar(df, x, y, title="", color=None, text_auto=True):
     st.plotly_chart(
         fig,
         use_container_width=True,
+        key=f"bar_{x}_{y}_{title}",
         config={
             "displaylogo": False
         }
@@ -260,6 +261,7 @@ def plot_line(df, x, y_cols, title=""):
     st.plotly_chart(
         fig,
         use_container_width=True,
+        key=f"line_{x}_{'_'.join(y_cols)}_{title}",
         config={
             "displaylogo": False
         }
@@ -331,6 +333,7 @@ def plot_scatter(df, x, y, title="", color=None, size=None):
     st.plotly_chart(
         fig,
         use_container_width=True,
+        key=f"scatter_{x}_{y}_{title}",
         config={
             "displaylogo": False
         }
