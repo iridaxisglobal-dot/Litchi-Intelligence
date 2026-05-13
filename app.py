@@ -530,7 +530,7 @@ st.markdown(
 
     .dashboard-header {
         text-align: center;
-        margin-top: -10px;
+        margin-top: -20px;
         margin-bottom: 20px;
     }
 
@@ -592,7 +592,13 @@ st.markdown(
             (image detection to maturity mix, disease risk, production outlook,
             model performance and research-grade statistics)
         </div>
-
+        <hr style="
+            margin-top:20px;
+            margin-bottom:10px;
+            border:0;
+            height:1px;
+            background:#dddddd;
+        ">
     </div>
     """,
     unsafe_allow_html=True
