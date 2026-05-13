@@ -479,70 +479,50 @@ observation_counts = data.get("observation_counts", pd.DataFrame())
 
 
 # ----------------------------------------------------------
-# Header CSS
+# Header
 # ----------------------------------------------------------
-
-st.markdown("""
-<style>
-
-.dashboard-header {
-    text-align: center;
-    margin-top: -20px;
-    margin-bottom: 20px;
-}
-
-.dashboard-title {
-    font-size: 38px;
-    font-weight: 800;
-    color: #b22222;
-    line-height: 1.2;
-    margin-bottom: 8px;
-}
-
-.dashboard-subtitle {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333333;
-    margin-bottom: 10px;
-}
-
-.dashboard-tagline {
-    font-size: 16px;
-    font-weight: 400;
-    color: #666666;
-    max-width: 1100px;
-    margin: auto;
-    line-height: 1.5;
-}
-
-.dashboard-divider {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    border: 0;
-    height: 1px;
-    background: #dddddd;
-}
-
-@media (max-width: 768px) {
-
-    .dashboard-title {
-        font-size: 22px !important;
+st.markdown(
+    """
+    <style>
+    .big-title {
+        font-size: 38px;
+        font-weight: 800;
+        color: #b22222;
+        text-align: center;
     }
 
-    .dashboard-subtitle {
-        font-size: 17px !important;
+    .subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
     }
 
-    .dashboard-tagline {
-        font-size: 13px !important;
-        padding-left: 10px;
-        padding-right: 10px;
+    .tagline {
+        font-size: 16px;
+        color: #666666;
+        text-align: center;
     }
-}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-</style>
-""", unsafe_allow_html=True)
+st.markdown(
+    '<p class="big-title">🍒 LITCHI ORCHARD INTELLIGENCE SYSTEM (LOIS)</p>',
+    unsafe_allow_html=True
+)
 
+st.markdown(
+    '<p class="subtitle">Story & Statistical Dashboard</p>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '<p class="tagline">AI Powered Orchard Intelligence, Disease Analytics & Production Forecasting Platform</p>',
+    unsafe_allow_html=True
+)
+
+st.divider()
 
 # ----------------------------------------------------------
 # Header HTML
