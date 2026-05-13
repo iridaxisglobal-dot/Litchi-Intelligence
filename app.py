@@ -403,10 +403,17 @@ def apply_common_filters(data):
             orchard_values = sorted(df["orchard_id"].dropna().unique().tolist())
             break
 
+    # selected_orchards = st.sidebar.multiselect(
+    #     "Orchard",
+    #     options=orchard_values,
+    #     default=orchard_values
+    # ) if orchard_values else []
+
     selected_orchards = st.sidebar.multiselect(
         "Orchard",
         options=orchard_values,
-        default=orchard_values
+        default=[],
+        placeholder="Select orchards"
     ) if orchard_values else []
 
     for key in ["production_estimation", "tree_production_summary"]:
