@@ -32,7 +32,7 @@ except Exception:
 # Page setup
 # ----------------------------------------------------------
 st.set_page_config(
-    page_title="Lichi AI Research Story Dashboard",
+    page_title="LITCHI ORCHARD INTELLIGENCE SYSTEM (LOIS)",
     page_icon="🍒",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -209,8 +209,11 @@ def safe_nunique(df, col):
         return df[col].nunique()
     return np.nan
 
+# ==========================================================
+# MODIFIED plot_bar()
+# ==========================================================
 
-def plot_bar(df, x, y, title, color=None, text_auto=True):
+def plot_bar(df, x, y, title="", color=None, text_auto=True):
     if not has_cols(df, [x, y]):
         st.info(f"Required columns missing for chart: {x}, {y}")
         return
@@ -219,99 +222,119 @@ def plot_bar(df, x, y, title, color=None, text_auto=True):
         x=x,
         y=y,
         color=color if color in df.columns else None,
-        text_auto=text_auto,
-        title=title
+        text_auto=text_auto
     )
-    fig.update_layout(height=420, margin=dict(l=10, r=10, t=55, b=10))
-    st.plotly_chart(fig, use_container_width=True)
-
-
-def plot_line(df, x, y_cols, title):
+    fig.update_layout(
+        height=420,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        config={
+            "displaylogo": False
+        }
+    )
+# ==========================================================
+# MODIFIED plot_line()
+# ==========================================================
+def plot_line(df, x, y_cols, title=""):
     if df is None or df.empty or x not in df.columns:
         st.info("No data available for this line chart.")
         return
-
     fig = go.Figure()
     for y in y_cols:
         if y in df.columns:
-            fig.add_trace(go.Scatter(x=df[x], y=df[y], mode="lines+markers", name=clean_column_name(y)))
-    fig.update_layout(title=title, height=420, margin=dict(l=10, r=10, t=55, b=10))
-    st.plotly_chart(fig, use_container_width=True)
-
-
-def plot_hist(df, col, title):
+            fig.add_trace(
+                go.Scatter(
+                    x=df[x],
+                    y=df[y],
+                    mode="lines+markers",
+                    name=clean_column_name(y)
+                )
+            )
+    fig.update_layout(
+        height=420,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        config={
+            "displaylogo": False
+        }
+    )
+# ==========================================================
+# MODIFIED plot_hist()
+# ==========================================================
+def plot_hist(df, col, title=""):
     if not has_cols(df, [col]):
         st.info(f"Required column missing: {col}")
         return
-    fig = px.histogram(df, x=col, nbins=30, title=title, marginal="box")
-    fig.update_layout(height=420, margin=dict(l=10, r=10, t=55, b=10))
-    st.plotly_chart(fig, use_container_width=True)
+    fig = px.histogram(
+        df,
+        x=col,
+        nbins=30,
+        marginal="box"
+    )
+    fig.update_layout(
+        height=420,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        config={
+            "displaylogo": False
+        }
+    )
 
-
-def plot_scatter(df, x, y, title, color=None, size=None):
-    """
-    Safe scatter plot helper.
-
-    Plotly does not accept NaN values in marker size.
-    This function:
-    - drops rows where x or y is missing,
-    - cleans the size column if present,
-    - disables size when no valid positive size values exist,
-    - keeps the chart running even when partial output CSVs have missing values.
-    """
+# ==========================================================
+# MODIFIED plot_scatter()
+# ==========================================================
+def plot_scatter(df, x, y, title="", color=None, size=None):
     if not has_cols(df, [x, y]):
         st.info(f"Required columns missing for scatter plot: {x}, {y}")
         return
-
     plot_df = df.copy()
-
-    # Convert x/y to numeric where possible and remove invalid plotting rows.
     plot_df[x] = pd.to_numeric(plot_df[x], errors="coerce")
     plot_df[y] = pd.to_numeric(plot_df[y], errors="coerce")
     plot_df = plot_df.dropna(subset=[x, y])
-
     if plot_df.empty:
         st.info(f"No valid rows available for scatter plot: {title}")
         return
-
     safe_size = None
     if size is not None and size in plot_df.columns:
         plot_df[size] = pd.to_numeric(plot_df[size], errors="coerce")
-
-        # Plotly marker size must be finite and >= 0.
         valid_size = plot_df[size].replace([np.inf, -np.inf], np.nan)
-
         if valid_size.notna().any():
             fallback_size = valid_size[valid_size.notna()].median()
             if pd.isna(fallback_size) or fallback_size < 0:
                 fallback_size = 1
-
             plot_df[size] = valid_size.fillna(fallback_size)
             plot_df[size] = plot_df[size].clip(lower=0)
-
-            # If all sizes are zero, use a constant visible size instead.
             if plot_df[size].max() == 0:
                 plot_df[size] = 1
-
             safe_size = size
-
     safe_color = color if color is not None and color in plot_df.columns else None
-
-    # Do not use Plotly OLS trendline here.
-    # Plotly requires the optional package statsmodels for trendline="ols".
-    # Keeping trendline disabled makes the dashboard portable across environments.
     fig = px.scatter(
         plot_df,
         x=x,
         y=y,
         color=safe_color,
-        size=safe_size,
-        title=title
+        size=safe_size
     )
-    fig.update_layout(height=460, margin=dict(l=10, r=10, t=55, b=10))
-    st.plotly_chart(fig, use_container_width=True)
-
-
+    fig.update_layout(
+        height=460,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        config={
+            "displaylogo": False
+        }
+    )
 def describe_numeric(df):
     if df is None or df.empty:
         return pd.DataFrame()
@@ -421,7 +444,24 @@ def apply_common_filters(data):
             filtered[key] = df[df["orchard_id"].isin(selected_orchards)]
 
     return filtered
+# ==========================================================
+# COMMON CHART TITLE FUNCTION
+# ==========================================================
 
+def chart_title(title):
+    st.markdown(
+        f"""
+        <div style="
+            font-size:20px;
+            font-weight:700;
+            margin-top:8px;
+            margin-bottom:-8px;
+        ">
+            {title}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ----------------------------------------------------------
 # Sidebar configuration
@@ -473,7 +513,7 @@ observation_counts = data.get("observation_counts", pd.DataFrame())
 # ----------------------------------------------------------
 # Header
 # ----------------------------------------------------------
-st.markdown('<div class="main-title">🍒 Lichi Image AI — Story & Statistical Dashboard</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">🍒 LIOS—Story & Statistical Dashboard</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="sub-title">From image detection to maturity mix, disease risk, production outlook, model performance and research-grade statistics.</div>',
     unsafe_allow_html=True
@@ -488,11 +528,11 @@ with st.expander("Data availability check", expanded=False):
 # ----------------------------------------------------------
 tabs = st.tabs([
     "1. Executive Story",
-    "2. Dataset & Model",
-    "3. Maturity & Fruit Detection",
-    "4. Disease & Quality",
-    "5. Production Estimate",
-    "6. Tree / Orchard View",
+    "2. Maturity & Fruit Detection",
+    "3. Disease & Quality",
+    "4. Production Estimate",
+    "5. Tree / Orchard View",
+    "6. Dataset & Model",
     "7. Statistical Analysis",
     "8. Data Tables"
 ])
@@ -570,17 +610,22 @@ with tabs[0]:
                     image_pred["red_count"].sum()
                 ]
             })
-            plot_bar(maturity_df, "maturity_stage", "detected_count", "Detected Fruits by Maturity Stage")
+            chart_title("Detected Fruits by Maturity Stage")
+            plot_bar(
+                maturity_df,
+                "maturity_stage",
+                "detected_count"
+            )
         else:
             st.info("Maturity count columns are not available yet.")
-
+            
     with right:
         if has_cols(production_summary, ["scenario", "total_future_production_after_disease_kg"]):
+            chart_title("Disease-adjusted Future Production by Scenario")
             plot_bar(
                 production_summary,
                 "scenario",
                 "total_future_production_after_disease_kg",
-                "Disease-adjusted Future Production by Scenario"
             )
         else:
             st.info("Production summary is not available yet.")
@@ -650,7 +695,7 @@ with tabs[1]:
                 title="Manual Detection Metrics by Class",
                 yaxis_title="Score",
                 height=420,
-                margin=dict(l=10, r=10, t=55, b=10)
+                margin=dict(l=10, r=10, t=10, b=10)
             )
             st.plotly_chart(fig, use_container_width=True)
         elif not manual_iou_summary.empty:
@@ -700,7 +745,12 @@ with tabs[2]:
                 .reset_index()
             )
             maturity_counts.columns = ["predicted_maturity_class", "fruit_count"]
-            plot_bar(maturity_counts, "predicted_maturity_class", "fruit_count", "Fruit Count by Predicted Maturity")
+            chart_title("Fruit Count by Predicted Maturity")
+            plot_bar(
+                maturity_counts,
+                "predicted_maturity_class",
+                "fruit_count"
+            )
         else:
             st.info("Fruit maturity predictions not available.")
 
@@ -721,17 +771,23 @@ with tabs[2]:
     left2, right2 = st.columns(2)
 
     with left2:
-        plot_hist(image_pred, "detected_fruit_count", "Distribution of Detected Fruits per Image")
-
+        chart_title("Distribution of Detected Fruits per Image")
+        plot_hist(
+            image_pred,
+            "detected_fruit_count"
+        )
     with right2:
-        plot_hist(fruit_pred, "confidence", "Distribution of Fruit Detection Confidence")
-
+        chart_title("Distribution of Fruit Detection Confidence")
+        plot_hist(
+            fruit_pred,
+            "confidence"
+        )
     if has_cols(image_pred, ["detected_fruit_count", "avg_maturity_index_0_100"]):
+        chart_title("Detected Fruit Count vs Average Maturity Index")
         plot_scatter(
             image_pred,
             "detected_fruit_count",
             "avg_maturity_index_0_100",
-            "Detected Fruit Count vs Average Maturity Index",
             color="orchard_id",
             size="avg_detection_confidence"
         )
@@ -844,7 +900,7 @@ with tabs[4]:
                 title="Future Production: Before Disease, Disease Loss, After Disease",
                 yaxis_title="kg",
                 height=460,
-                margin=dict(l=10, r=10, t=55, b=10)
+                margin=dict(l=10, r=10, t=10, b=10)
             )
             st.plotly_chart(fig, use_container_width=True)
         st.dataframe(production_summary, use_container_width=True)
@@ -1040,7 +1096,7 @@ with tabs[6]:
                     aspect="auto",
                     title="Correlation Matrix"
                 )
-                fig.update_layout(height=520, margin=dict(l=10, r=10, t=55, b=10))
+                fig.update_layout(height=520, margin=dict(l=10, r=10, t=10, b=10))
                 st.plotly_chart(fig, use_container_width=True)
 
             st.markdown("#### Target distribution")
