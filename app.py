@@ -548,7 +548,7 @@ st.markdown("""
 # Header HTML
 # ----------------------------------------------------------
 
-st.markdown("""
+header_html = """
 <div class="dashboard-header">
 
     <div class="dashboard-title">
@@ -568,8 +568,9 @@ st.markdown("""
     <hr class="dashboard-divider">
 
 </div>
-""", unsafe_allow_html=True)
+"""
 
+st.markdown(header_html, unsafe_allow_html=True)
 # ----------------------------------------------------------
 # Tabs
 # ----------------------------------------------------------
