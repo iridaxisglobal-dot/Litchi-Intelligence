@@ -590,7 +590,7 @@ tabs = st.tabs([
 # Tab 1 — Executive Story
 # ==========================================================
 with tabs[0]:
-    st.markdown('<div class="section-title">Executive Story</div>', unsafe_allow_html=True)
+    st.subheader("Executive Story")
 
     total_images = safe_nunique(image_pred, "image_name")
     total_fruits = safe_sum(image_pred, "detected_fruit_count")
@@ -691,7 +691,7 @@ with tabs[0]:
 # Tab 2 — Dataset & Model
 # ==========================================================
 with tabs[1]:
-    st.markdown('<div class="section-title">Dataset & Model Performance</div>', unsafe_allow_html=True)
+    st.subheader("Dataset & Model Performance")
 
     c1, c2, c3, c4 = st.columns(4)
 
@@ -771,8 +771,8 @@ with tabs[1]:
 # Tab 3 — Maturity & Detection
 # ==========================================================
 with tabs[2]:
-    st.markdown('<div class="section-title">Maturity & Fruit Detection Analysis</div>', unsafe_allow_html=True)
-
+    st.subheader("Maturity & Fruit Detection Analysis")
+    
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         kpi("Fruit-level rows", fmt_num(len(fruit_pred), 0))
@@ -851,8 +851,7 @@ with tabs[2]:
 # Tab 4 — Disease & Quality
 # ==========================================================
 with tabs[3]:
-    st.markdown('<div class="section-title">Disease, Quality & Visual Stress Analysis</div>', unsafe_allow_html=True)
-
+    st.subheader("Disease, Quality & Visual Stress Analysis")
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         kpi("Avg disease index", fmt_num(safe_mean(image_disease, "avg_composite_disease_index"), 2))
@@ -915,8 +914,8 @@ with tabs[3]:
 # Tab 5 — Production
 # ==========================================================
 with tabs[4]:
-    st.markdown('<div class="section-title">Disease-adjusted Production Estimate</div>', unsafe_allow_html=True)
-
+    
+    st.subheader("Disease-adjusted Production Estimate")
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         kpi("Production rows", fmt_num(len(production), 0))
@@ -997,8 +996,7 @@ with tabs[4]:
 # Tab 6 — Tree / Orchard
 # ==========================================================
 with tabs[5]:
-    st.markdown('<div class="section-title">Tree, Orchard & Spatial View</div>', unsafe_allow_html=True)
-
+    st.subheader("Tree, Orchard & Spatial View")
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         kpi("Trees in prediction summary", fmt_num(safe_nunique(tree_pred, "tree_global_id"), 0))
@@ -1076,8 +1074,8 @@ with tabs[5]:
 # Tab 7 — Statistical Analysis
 # ==========================================================
 with tabs[6]:
-    st.markdown('<div class="section-title">Statistical Analysis Parameter Dashboard</div>', unsafe_allow_html=True)
-
+    
+    st.subheader("Statistical Analysis Parameter Dashboard")
     dataset_options = {
         "Image-level predictions": image_pred,
         "Fruit-level predictions": fruit_pred,
@@ -1213,8 +1211,8 @@ with tabs[6]:
 # Tab 8 — Data Tables
 # ==========================================================
 with tabs[7]:
-    st.markdown('<div class="section-title">Raw Output Tables</div>', unsafe_allow_html=True)
-
+    
+    st.subheader("Raw Output Tables")
     table_options = {
         "Dataset statistics": dataset_stats,
         "Class distribution": class_dist,
