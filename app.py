@@ -374,11 +374,11 @@ def apply_common_filters(data):
     #     options=scenario_values,
     #     default=scenario_values
     # ) if scenario_values else []
-    all_scenarios = st.sidebar.checkbox("Select all scenarios", value=True)
     selected_scenarios = st.sidebar.multiselect(
         "Production scenario",
         options=scenario_values,
-        default=scenario_values if all_scenarios else []
+        default=[],
+        placeholder="Select scenarios"
     )
     
     maturity_values = []
